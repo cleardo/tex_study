@@ -1,0 +1,79 @@
+\documentclass[a4paper,twoside,11pt]{ctexart}
+\usepackage{CJK}
+\usepackage{syntonly}
+\usepackage{listings}
+%\syntaxonly
+% 定义标题作者
+\author{林志宏(cleardo@gmail.com)}
+\title{latex入门}
+
+\begin{document}
+
+
+
+% 生成标题
+\maketitle
+
+% 插入表格
+
+\tableofcontents
+\section{一些单词}
+开始文章
+\section{下一个节}
+
+It does not matter whether you enter one or several    spaces after a word
+
+
+a empty line start a new para
+
+
+\lstset{language=C++}
+\lstset{breaklines}
+\lstset{extendedchars=false}
+
+\begin{lstlisting}
+int a;
+class A: B
+{
+}
+\end{lstlisting}
+% 中文
+
+% 命令以空格终结
+
+\centerline {命令以空格终结}
+
+命令行参数使用\{\}包围
+
+可选参数使用\[\]
+
+换行可以使用\newline
+这一行会缩进2格
+
+注释使用\%
+
+文档结构
+
+a4paper, A4纸
+11pt 11像素
+
+% 省略号
+\ldots{} and here it ends
+
+使用xdvi命令
+
+xdvi foo.dvi \&
+
+dvips {-}Pcmz foo.dvi \-o foo.ps
+
+文档布局
+
+fleqn 显示公式在左侧
+
+include 开始一个新页面
+
+input 简单的包含文件
+
+syntaxonly 指令进行语法检查，不生成文件
+
+\end{document}
