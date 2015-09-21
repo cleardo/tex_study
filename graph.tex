@@ -1,0 +1,13 @@
+\documentclass{article}
+
+\usepackage{tikz}
+\usetikzlibrary{graphs}
+
+\begin{document}
+
+\tikz 
+    \graph [nodes={draw, circle}]{
+        subgraph $I_n$[name=inner] -- [complete bipartite]
+        subgraph $I_n$[name=outer]
+    };
+\end{document}

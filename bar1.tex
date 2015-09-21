@@ -1,0 +1,250 @@
+\documentclass{article}
+\usepackage{fontspec}
+\usepackage{xeCJK}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+\usepackage{pgf-pie}
+\usepackage{caption}
+\usepackage{multirow}
+\usepackage{float}
+
+\pgfplotsset{compat=newest}
+\definecolor{myblue}{RGB}{52, 152, 219}
+
+\definecolor{blue01}{RGB}{41, 128, 185}
+
+\definecolor{red01}{RGB}{192, 57, 43}
+\definecolor{red02}{RGB}{255, 0, 151}
+
+\definecolor{green01}{RGB}{22,160,133}
+
+\usepackage[colorlinks = true,
+            linkcolor = blue,
+            urlcolor  = blue,
+            citecolor = blue01,
+            anchorcolor = blue01]{hyperref}
+
+\pagestyle{empty}
+
+\setCJKmainfont{SimSun}
+
+\begin{document}
+
+\newcommand{\tabincell}[2]{
+    \begin{tabular}
+        {@{}#1@{}}#2
+    \end{tabular}
+}
+
+\newcommand\qaversion{V0.2.5}
+\newcommand\qatesturl{http://debug.sdp.nd}
+%\newcommand\qarequrl{http://demo.sdp.nd/SDP-V0.2\%20Design\%20By\%20Liyj/\#p=网龙开发者门户原型}
+\newcommand\qarequrl{http://demo.sdp.nd/SDP-V0.2\%20Design\%20By\%20Liyj/}
+\newcommand\qapmsurl{}
+
+\title{共享平台{\qaversion}内网测试报告}
+\author{QA部WEB测试三组共享平台项目组}
+\maketitle
+
+
+\colorbox{myblue}{\makebox(0.01, 9){\ }} 基本信息\\
+\begin{table}[!hbp]
+\renewcommand{\arraystretch}{2}
+\begin{tabular}{|l|l|l|l|}
+\hline
+\textcolor{red02}{\textbf{平台}} & WEB端 & \textcolor{red02}{\textbf{版本号}} & {\qaversion} \\
+\hline
+\textcolor{red02}{\textbf{项目名称}} & 共享平台门户 & \textcolor{red02}{\textbf{测试地址}} & \url{\qatesturl} \\
+\hline
+\textcolor{red02}{\textbf{测试类型}} & 功能测试 & \textcolor{red02}{\textbf{测试范围}} & \href{\qarequrl}{参见需求文档} \\
+\hline
+\textcolor{red02}{\textbf{测试人员}} & 林斯潇、林志宏、杨晓燕 & 
+\textcolor{red02}{\textbf{BUG详情}} & \href{http://}{点击查看} \\
+\hline
+\textcolor{red02}{\textbf{程序沟通人员}} & \tabincell{l}{
+蔡扬兴、李书德、林龙钢、吴杰明\\
+欧勇、陈文杰、温志杰、李辉\\
+李鲁闽、林凌清、李勤、黄建新\\
+翁雨辰、陈浩亮、叶金龙、胡淮波} & \textcolor{red02}{\textbf{用例执行率}} & 100\% \\
+\hline
+\textcolor{red02}{\textbf{需求沟通人员}} & 李永均 & \textcolor{red02}{\textbf{是否允许发布}} & 是 \\
+\hline
+\textcolor{red02}{\textbf{原型地址}} & \multicolumn{3}{|c|}{{\qarequrl}} \\
+\hline
+\multirow{2}*{\parbox{4em}{\textcolor{red02}{\textbf{测试环境}}}} & 操作系统 & \multicolumn{2}{|l|}{Windows7、Windows8} \\
+\cline{2-4}
+& 浏览器 & \multicolumn{2}{|l|}{Chrome、Firefox} \\
+\hline
+\end{tabular}
+\end{table}
+
+\par{}
+
+\colorbox{myblue}{\makebox(0.01, 9){\ }} 测试结论\\
+\begin{itemize}
+\item 本次测试中主要的功能模块通过。
+\item 截止报告时间，共提交BUG: 14个，建议: 6个，其中激活状态的BUG建议: 7个，延期处理: 0个，未解决的严重BUG数: 4个。
+\item 截至报告时间，禅道上当前版本存在激活状态BUG: 7个。不影响功能，建议发布。
+\end{itemize}
+
+
+\colorbox{myblue}{\makebox(0.01, 9){\ }} BUG现状\\
+
+\begin{table}[H]
+\renewcommand{\arraystretch}{2}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+BUG总数 & 致命BUG数 & 严重BUG数 & 一般BUG数 & 轻微BUG数 \\
+
+\hline
+14个 &0个 & 7个 & 7个 & 0\\
+\hline
+建议总数 & \multicolumn{4}{|l|}{6个} \\
+\hline
+
+\end{tabular}
+\end{table}
+
+\colorbox{myblue}{\makebox(0.01, 9){\ }} 严重程度统计\\
+
+\begin{figure}[!hbp]
+
+\pgfplotstableread{
+    % 建议数 1轮 2轮 trunk主干
+0 0
+1 6
+2 7
+3 7
+
+% Bug数
+}\dataset
+
+\begin{tikzpicture}
+
+\begin{axis}[
+    ybar,
+    width=12cm,
+    height=8cm,
+    ymin=0,
+    ymax=10,
+    ylabel={Bug数},
+    % 刻度
+    xtick=data,
+    xticklabels={
+        \strut 建议,
+        \strut 轻微,
+        \strut 一般,
+        \strut 严重,
+        \strut 致命
+    }]
+
+\addplot[draw=black, fill=myblue, nodes near coords] table[x index=0, y index=1] \dataset;
+\end{axis}
+\end{tikzpicture}
+\end{figure}
+
+
+\colorbox{myblue}{\makebox(0.01, 9){\ }} BUG状态统计\\
+
+\begin{figure}[H]
+\begin{tikzpicture}
+\begin{axis}[
+symbolic x coords={激活, 已解决, 已关闭},
+    xtick=data]
+    \addplot[ybar, fill=red02, nodes near coords] coordinates {
+(激活, 7)
+(已解决, 10)
+(已关闭, 3)
+
+    };
+
+\end{axis}
+\end{tikzpicture}
+\end{figure}
+
+\colorbox{myblue}{\makebox(0.01, 9){\ }} BUG类型统计\\
+
+
+\begin{figure}[H]
+\begin{tikzpicture}
+    \pie{
+        10/配置相关, 20/设计缺陷, 5/安装部署, 50/代码错误, 15/界面优化  
+    }
+\end{tikzpicture}
+\end{figure}
+
+\colorbox{myblue}{\makebox(0.01, 9){\ }} 解决方案统计\\
+\begin{figure}[H]\begin{tikzpicture}
+    \pie{
+        0/延期处理, 35/未解决, 5/设计如此, 55/已解决, 5/不予解决    
+    }
+\end{tikzpicture}
+\end{figure}
+
+\colorbox{myblue}{\makebox(0.01, 9){\ }} Bug数据\\
+
+\begin{table}[H]
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{|c|p{11cm}|c|}
+\hline
+ID & 标题 & 链接 \\
+\hline
+244 & 【web应用--生产环境发布】更新web应用代码后，生产环境-正式版本发布内容没有更新 & \href{http://pms.sdp.nd/index.php?m=bug\&f=view\&bugID=244}{查看详情}\\
+\hline
+243 & 【接口文档】 多处文字错误，建议修改 & \href{http://pms.sdp.nd/index.php?m=bug\&f=view\&bugID=243}{查看详情}\\
+\hline
+240 & 【接口文档】将接口名称写成操作名称 & \href{http://pms.sdp.nd/index.php?m=bug\&f=view\&bugID=240}{查看详情}\\
+\hline
+237 & 【API文档】文档中关于对象部分说明，一些注释信息跑到注释符号前，且排版不美观 & \href{http://pms.sdp.nd/index.php?m=bug\&f=view\&bugID=237}{查看详情}\\
+\hline
+236 & 【一键发布】发布过程页面布局不美观 & \href{http://pms.sdp.nd/index.php?m=bug\&f=view\&bugID=236}{查看详情}\\
+\hline
+235 & 【Eclipse开发环境】升级文档没有提供 & \href{http://pms.sdp.nd/index.php?m=bug\&f=view\&bugID=235}{查看详情}\\
+\hline
+234 & 【一键发布】灰度发布失败，但是还是有下载地址和二维码 & \href{http://pms.sdp.nd/index.php?m=bug\&f=view\&bugID=234}{查看详情}\\
+\hline
+233 & 【附加更多服务--创建服务】在从“附加更多服务”处进入后，创建服务，仅需要创建当前环境的服务 & \href{http://pms.sdp.nd/index.php?m=bug\&f=view\&bugID=233}{查看详情}\\
+\hline
+232 & 【发布类型说明建议】希望把发布改为正式发布 & \href{http://pms.sdp.nd/index.php?m=bug\&f=view\&bugID=232}{查看详情}\\
+\hline
+231 & 【灰度发布】链接指向war包 & \href{http://pms.sdp.nd/index.php?m=bug\&f=view\&bugID=231}{查看详情}\\
+\hline
+230 & 【添加伙伴】添加伙伴后的推送信息，门户地址错误 & \href{http://pms.sdp.nd/index.php?m=bug\&f=view\&bugID=230}{查看详情}\\
+\hline
+229 & 【灰度发布】灰度发布后，无法访问网站 & \href{http://pms.sdp.nd/index.php?m=bug\&f=view\&bugID=229}{查看详情}\\
+\hline
+228 & 【一键发布】历史版本中，无法区分是正式版本还是灰度发布版本 & \href{http://pms.sdp.nd/index.php?m=bug\&f=view\&bugID=228}{查看详情}\\
+\hline
+227 & 【一键发布】发布失败，但是失败原因缺失 & \href{http://pms.sdp.nd/index.php?m=bug\&f=view\&bugID=227}{查看详情}\\
+\hline
+226 & 【门户】删除应用出错 & \href{http://pms.sdp.nd/index.php?m=bug\&f=view\&bugID=226}{查看详情}\\
+\hline
+225 & 【应用创建】应用创建后99U推送svn地址是中包含IP地址，建议修改 & \href{http://pms.sdp.nd/index.php?m=bug\&f=view\&bugID=225}{查看详情}\\
+\hline
+224 & 【分布式存储服务信息】能不能不换行 & \href{http://pms.sdp.nd/index.php?m=bug\&f=view\&bugID=224}{查看详情}\\
+\hline
+223 & 【每日构建】构建信息没有通过99U进行推送 & \href{http://pms.sdp.nd/index.php?m=bug\&f=view\&bugID=223}{查看详情}\\
+\hline
+221 & 【域名】 web应用的域名不应该包含下划线 & \href{http://pms.sdp.nd/index.php?m=bug\&f=view\&bugID=221}{查看详情}\\
+\hline
+197 & 登录时勾选记住密码，关闭浏览器后，下次打开还是未登录状态，要输密码登录。 & \href{http://pms.sdp.nd/index.php?m=bug\&f=view\&bugID=197}{查看详情}\\
+\hline
+\end{tabular}
+\end{table}
+
+\colorbox{myblue}{\makebox(0.01, 9){\ }} 风险评估\\
+
+1. 浏览器兼容性优先级测试如下：IE8、IE11、谷歌、360，其它浏览器和系统分辨率没有进行兼容性测试，可能存在兼容性风险
+
+2. 本次跟进只对跟进范围进行测试，故存在漏测风险。
+
+3. 本轮测试在网络正常的情况下测试的，未对网络异常情况下进行测试，故发布存在风险。
+
+4. 本轮测试在没有模拟所有系统、软件和硬件环境融合情况下进行测试，故发布存在风险。
+
+5. 本轮测试只在内网环境中测试，未同步测试外网的功能，故发布存在风险。
+
+\colorbox{myblue}{\makebox(0.01, 9){\ }} 存在问题\\
+
+\end{document} 

@@ -1,0 +1,17 @@
+\documentclass{article}
+\usepackage{fontspec}
+\usepackage{xeCJK}
+\usepackage{tikz}
+\usetikzlibrary{graphs}
+\usetikzlibrary{positioning}
+\pagestyle{empty}
+
+\setCJKmainfont{SimSun}
+
+\begin{document}
+
+\begin{figure}
+\tikz \graph [grow right=2cm] {unsigned integer -> d -> digit -> E};
+\end{figure}
+
+\end{document} 

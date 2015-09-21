@@ -1,0 +1,51 @@
+\documentclass{article}
+\usepackage{xeCJK}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+\pgfplotsset{compat=newest}
+\usepackage{caption}
+
+\setCJKmainfont{SimSun}
+\setCJKsansfont{Times New Roman}
+
+\definecolor{myblue}{RGB}{52, 152, 219}
+\definecolor{blue01}{RGB}{41, 128, 185}
+\definecolor{red01}{RGB}{192, 57, 43}
+\definecolor{green01}{RGB}{22,160,133}
+
+\begin{document}
+
+\thispagestyle{empty}
+
+\begin{figure}[!hbp]
+
+\pgfplotstableread{
+    % 建议数 1轮 2轮 trunk主干
+    0 32 35 20
+    % Bug数
+    1 28 45 23
+}\dataset
+
+\begin{tikzpicture}
+
+\begin{axis}[
+    ybar,
+    width=12cm,
+    height=8cm,
+    ymin=0,
+    ymax=100,
+    ylabel={Bug数},
+    % 刻度
+    xtick=data,
+    xticklabels={
+        \strut 建议
+    }]
+
+\addplot[draw=black, fill=myblue, nodes near coords] table[x index=0, y index=1] \dataset;
+\end{axis}
+
+\end{tikzpicture}
+\end{figure}
+
+\end{document}

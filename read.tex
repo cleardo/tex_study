@@ -1,0 +1,36 @@
+\documentclass{article}
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+\usepackage{filecontents}
+\usepackage{fontspec}
+\usepackage{xeCJK}
+\usepackage{tikz}
+\pagestyle{empty}
+
+\setCJKmainfont{SimSun}
+
+\begin{filecontents}{testdata.csv}
+    Probe   Mittelwert Standard
+    well    100.00      0.00
+    PL      12.19       2.47
+    Dex     104.6       6.28
+\end{filecontents}
+
+\pgfplotstableread[col sep=space]{testdata.csv}\datatable
+
+\begin{document}
+
+\thispagestyle{empty}
+
+
+\begin{tikzpicture}
+    \begin{axis}[
+        xtick=data
+        %xticklabels from table={\datatable}{Probe},
+    ]
+    %\addplot table[x expr=\coordindex, y=Mittelwert]{\datatable};
+    \addplot table[x=Standard, y=Mittelwert]{\datatable};
+    \end{axis}
+\end{tikzpicture}
+
+\end{document} 

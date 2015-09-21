@@ -1,0 +1,17 @@
+\documentclass{article}
+\usepackage{tikz}
+\usetikzlibrary{datavisualization}
+\usetikzlibrary{datavisualization.formats.functions}
+\pagestyle{empty}
+
+\begin{document}
+\colorbox{white}{%
+    \begin{tikzpicture}
+        \datavisualization [school book axes, visualize as smooth line]
+            data [format=function] {
+                var x : interval [-1.5:1.5] samples 7;
+                func y = \value x;
+            };
+    \end{tikzpicture}
+}
+\end{document} 

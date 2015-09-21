@@ -1,0 +1,38 @@
+\documentclass{article}
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+\usepackage{filecontents}
+\usepackage{fontspec}
+\usepackage{xeCJK}
+\usepackage{tikz}
+\pagestyle{empty}
+
+\setCJKmainfont{SimSun}
+
+\begin{filecontents}{testdata.csv}
+    Label First Second  Third
+    10    0.1   0.3     0.3
+    20    0.2   0.3     0.3
+\end{filecontents}
+
+\pgfplotstableread[col sep=space]{testdata.csv}\datatable
+
+\begin{document}
+
+\thispagestyle{empty}
+
+
+\begin{tikzpicture}
+    \begin{axis}[
+        xbar stacked,
+        xmin=0,
+        ytick=data,
+        yticklabels from table={\datatable}{Label}
+        %xticklabels from table={\datatable}{Probe},
+    ]
+    \addplot [fill=yellow] table [x=First, y expr=\coordindex] {\datatable};
+    %\addplot table[x expr=\coordindex, y=Mittelwert]{\datatable};
+    %\addplot table[x=Standard, y=Mittelwert]{\datatable};
+    \end{axis}
+\end{tikzpicture}
+\end{document} 
