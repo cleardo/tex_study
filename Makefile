@@ -39,8 +39,9 @@ clean:
 	rm -rf *.aux
 	rm -rf *.ps
 	rm -rf *.png
+	rm -rf *.pdf
 
 git:
-	git add .
+	git add *.tex
 	git commit -am"git latex"
 	git push origin master
