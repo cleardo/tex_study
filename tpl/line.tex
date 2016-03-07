@@ -1,0 +1,42 @@
+\documentclass{article}
+\usepackage{xeCJK}
+\usepackage{fontspec}
+\usepackage{minted}
+
+%设置CJK字体
+\setCJKmainfont{SimSun}
+
+\usepackage{tikz}
+
+\usetikzlibrary{matrix}
+
+\begin{document}
+
+\begin{tikzpicture} [
+    state/.style={draw, circle, radius=1.5}, shorten >= 2pt, >=stealth
+    ]
+
+    \node at (0.5, 2) (pay) {付款};
+
+    \node at (0.5, 2.7) (cancel) {撤销付款};
+
+    \draw[->] (1, 0.8) .. controls (1.5, 2) and (-0.5, 2) .. (0, 0.8);
+
+    \draw[->] (1, 0.5) .. controls (2.5, 3) and (-1.5, 3) .. (0, 0.5);
+
+    \node[text width=7mm, draw, circle] at (0.5, 0.5) (buyer) {  };
+
+    \node at (-1, -1) (start) {开始};
+
+    \draw[->] (start) to (buyer);
+
+    
+
+    \begin{scope}
+        %\draw[->] (a) to[loop above] node[above] {付款} (a);
+        %\draw[->] (a) to[loop above] node[above] {撤销} (a);
+    \end{scope}
+
+\end{tikzpicture}
+
+\end{document}

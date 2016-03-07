@@ -1,0 +1,28 @@
+\documentclass{article}
+\usepackage{xeCJK}
+\usepackage{fontspec}
+\usepackage{minted}
+
+%设置CJK字体
+\setCJKmainfont{SimSun}
+
+\usepackage{tikz}
+
+\usetikzlibrary{matrix}
+
+\begin{document}
+
+\begin{tikzpicture} 
+
+    \matrix {
+      \node (a) {a}; \\
+      \node (b) {b}; \\
+    };
+
+    \begin{scope}
+        \draw (a) to (b);
+    \end{scope}
+
+\end{tikzpicture}
+
+\end{document}
